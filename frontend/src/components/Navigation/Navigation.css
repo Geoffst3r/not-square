@@ -1,0 +1,11 @@
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-redirect {
+    text-decoration: none;
+    color: red;
+    font-family: cursive;
+}
