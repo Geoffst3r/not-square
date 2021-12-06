@@ -47,10 +47,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
-  User.associate = function (models) {
-    // associations can be defined here
-  };
-
   // get User instance information in JWT
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
@@ -92,6 +88,16 @@ module.exports = (sequelize, DataTypes) => {
       hashedPassword
     });
     return await User.scope('currentUser').findByPk(user.id);
+  };
+
+  User.associate = function (models) {
+    // associations can be defined here
+    const columnMapping = {
+      through: 'Rsvp',
+      otherKey: 'eventId',
+      foreignKey: 'userId'
+    };
+    User.belongsToMany(models.Event, columnMapping);
   };
 
   return User;
