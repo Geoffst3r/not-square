@@ -21,14 +21,21 @@ const validateNewEvent = [
     handleValidationErrors
 ];
 
+// Get all events
+router.get('/', asyncHandler(async (req, res) => {
+    const events = await Event.findAll();
+    console.log(events);
+    return res.json(events);
+}));
+
 // Add a new event
 router.post(
     '/',
     requireAuth,
     validateNewEvent,
     asyncHandler(async (req, res) => {
-        const { time, title, body } = req.body;
-        const event = await Event.create({ time, title, body });
+        const { time, title, body, userId } = req.body;
+        const event = await Event.create({ time, title, body, userId });
         return res.json({ event });
     })
 );

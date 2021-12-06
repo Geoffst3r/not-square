@@ -7,13 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
 
-  Event.addEvent = async function ({ time, title, body, userId }) {
-    const { id } = this;
-    const event = Event.create({
-      time, title, body, userId: id
-    });
-    return event;
-  }
+  // Event.addEvent = async function ({ time, title, body, userId }) {
+  //   const event = Event.create({
+  //     time, title, body, userId
+  //   });
+  //   return event;
+  // }
 
   Event.associate = function (models) {
     Event.belongsTo(models.User, { foreignKey: 'userId' });
