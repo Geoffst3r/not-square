@@ -1,12 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-// import * as eventActions from '../../store/event';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import * as eventActions from '../../store/event';
 import './Event.css';
 
 function Event({ isLoaded }) {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const events = useSelector(state => state.event);
+    const eventsObj = useSelector(state => state.event);
+    const events = Object.values(eventsObj);
+
+    useEffect(() => {
+        dispatch(eventActions.getEvents());
+    }, [dispatch])
 
     return (
         <>

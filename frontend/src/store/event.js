@@ -13,7 +13,6 @@ export const getEvents = () => async (dispatch) => {
     const res = await csrfFetch('/api/events');
     if (res.ok) {
         const events = await res.json();
-        console.log(events);
         dispatch(get(events));
         return events;
     };
