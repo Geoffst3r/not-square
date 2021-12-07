@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import SignupFormModal from "../SignupFormModal";
 import './LoginForm.css'
 
-function LoginForm() {
+function LoginForm({ modal }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
@@ -48,7 +48,7 @@ function LoginForm() {
                     ))}
             </ul>
             <div className="demo-user-and-signup">
-                <SignupFormModal modal={true} title="Don't have an account? Sign up!" />
+                <SignupFormModal title="Don't have an account? Sign up!" />
                 <button
                     type="submit"
                     onClick={() => {

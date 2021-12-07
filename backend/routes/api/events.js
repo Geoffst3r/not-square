@@ -41,4 +41,42 @@ router.post(
     })
 );
 
+// Get a single event
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const eventId = parseInt(req.params.id, 10);
+    const event = await Event.findByPk(eventId);
+    return res.json(event);
+}));
+
+// Update a single event
+router.put('/:id(\\d+)',
+    requireAuth,
+    validateNewEvent,
+    asyncHandler(async (req, res) => {
+        const eventId = parseInt(req.params.id, 10);
+        const event = Event.findByPk(eventId);
+
+        if (event) {
+            await event.update({
+                title: req.body.title,
+                body: req.body.body,
+                time: req.body.time
+            });
+            return event;
+        }
+    }));
+
+// Delete a single event
+router.delete('/:id(\\d+)',
+    requireAuth,
+    asyncHandler(async (req, res) => {
+        const eventId = parseInt(req.params.id, 10);
+        const event = Event.findByPk(eventId);
+
+        if (event) {
+            await event.destroy();
+            res.json('Success');
+        }
+    }));
+
 module.exports = router;
