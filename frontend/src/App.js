@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Event isLoaded={isLoaded} />
+      <Event />
     </>
   );
 }

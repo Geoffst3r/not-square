@@ -5,11 +5,16 @@ import { useEffect } from 'react';
 import * as eventActions from '../../store/event';
 import './Event.css';
 
-function Event({ isLoaded }) {
+function Event() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const eventsObj = useSelector(state => state.event);
     const events = Object.values(eventsObj);
+    events.forEach(event => {
+        const time = new Date(event.time);
+        event.dayString = time.toDateString();
+        event.timeString = time.toLocaleTimeString();
+    });
 
     useEffect(() => {
         dispatch(eventActions.getEvents());
@@ -23,8 +28,13 @@ function Event({ isLoaded }) {
             > +Event
             </button>
             <ul className='event-list'>
-                {isLoaded && events.length > 0 && events.map(event => (
-                    <NavLink key={event.id} to={`/events/${event.id}`}>{event.title}</NavLink>
+                {events.length > 0 && events.map(event => (
+                    <NavLink style={{ "textDecoration": "none", "color": "black" }} key={event.id} to={`/events/${event.id}`}>
+                        <ul className='event'>
+                            <li className='event-title'>{event.title}</li>
+                            <li className='event-time'>{`${event.dayString} ${event.timeString}`}</li>
+                        </ul>
+                    </NavLink>
                 ))}
             </ul>
         </>
