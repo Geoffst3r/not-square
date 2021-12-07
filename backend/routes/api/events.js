@@ -14,7 +14,9 @@ const validateNewEvent = [
         .withMessage('Please provide the time of the event.'),
     check('title')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide the title of the event.'),
+        .withMessage('Please provide the title of the event.')
+        .isLength({ max: 255 })
+        .withMessage('Title cannot be longer than 255 characters.'),
     check('body')
         .exists({ checkFalsy: true })
         .withMessage('Please provide the body of the event.'),
@@ -35,7 +37,7 @@ router.post(
     asyncHandler(async (req, res) => {
         const { time, title, body, userId } = req.body;
         const event = await Event.create({ time, title, body, userId });
-        return res.json({ event });
+        return res.json(event);
     })
 );
 

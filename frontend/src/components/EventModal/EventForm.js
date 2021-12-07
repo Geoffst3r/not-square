@@ -1,33 +1,33 @@
 import React, { useState } from "react";
-// import * as eventActions from "../../store/event";
-// import { useDispatch } from "react-redux";
+import * as eventActions from "../../store/event";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import './EventForm.css';
 
 function EventForm({ sessionUser }) {
-    // const { id } = sessionUser;
-    // const dispatch = useDispatch();
+    const { id } = sessionUser;
+    const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const dateTime = new Date(`${day}T${time}`);
-    //     return dispatch(eventActions.addEvent({ title, body, time: dateTime, userId: id }))
-    //         .catch(async (res) => {
-    //             const data = await res.json();
-    //             if (data && data.errors) setErrors(data.errors);
-    //         });
-    // };
-    // onSubmit={handleSubmit}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const dateTime = new Date(`${day}T${time}`);
+        return dispatch(eventActions.makeNewEvent({ title, body, time: dateTime, userId: id }))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    };
 
     return (
-        <form className="event-form">
-            {/* <ul className="errors">
+        <form onSubmit={handleSubmit} className="event-form">
+            <ul className="errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul> */}
+            </ul>
             <label className="event-input">
                 Title
                 <input
