@@ -6,56 +6,71 @@
 
     display: grid;
     grid-gap: 20px;
+    height: 300px;
+    width: 500px;
 }
 
 .login-input {
     display: flex;
     flex-direction: column;
-    padding: auto;
-    margin: auto;
 }
 
 .login-input > input {
     height: 30px;
     border-radius: 10px;
     border: 1px solid lightgray;
+    font-size: 16px;
 }
 
 .login {
-    padding: 5px;
     height: 30px;
     background-color: red;
     color: white;
     border-radius: 10px;
     border: none;
+    font-size: 18px;
 }
 
 .login:hover {
     background-color: rgba(255, 0, 0, 0.7);
     cursor: pointer;
+    color: black;
 }
 
-/* button {
+.login-errors {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.login-errors > li {
+    list-style: none;
+    font-size: 20px;
+    font-style: italic;
+    color: red;
+}
+
+.login-form > label {
+    font-size: 20px;
+    font-family: cursive;
+}
+
+.demo-user-and-signup {
+    display: inline-flex;
+    margin-bottom: -20px;
+    justify-content: space-between;
+}
+
+.demo-user-and-signup button {
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     overflow: hidden;
     outline: none;
-} */
-
-/* button:hover {
-    color: lightblue;
-} */
-
-.login-errors {
-    background-color: red;
-    border-radius: 10px;
 }
 
-.login-errors > li {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.demo-user-and-signup button:hover {
+    color: lightblue;
 }

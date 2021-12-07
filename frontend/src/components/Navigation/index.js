@@ -19,8 +19,8 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <li className='user-interact'>
-                <LoginFormModal />
-                <SignupFormModal />
+                <LoginFormModal title='Log in' />
+                <SignupFormModal title='Sign Up' />
             </li>
         );
     }

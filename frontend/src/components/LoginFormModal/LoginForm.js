@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import SignupFormModal from "../SignupFormModal";
 import './LoginForm.css'
 
 function LoginForm() {
@@ -22,11 +23,6 @@ function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} className="login-form">
-            {errors.length > 0 && <ul className="login-errors">
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>}
             <label className="login-input">
                 Username or Email
                 <input
@@ -45,6 +41,22 @@ function LoginForm() {
                     required
                 />
             </label>
+            <ul className="login-errors">
+                {errors.length > 0 &&
+                    errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+            </ul>
+            <div className="demo-user-and-signup">
+                <SignupFormModal modal={true} title="Don't have an account? Sign up!" />
+                <button
+                    type="submit"
+                    onClick={() => {
+                        setCredential('Demo-lition')
+                        setPassword('password')
+                    }}
+                >Demo</button>
+            </div>
             <button type="submit" className="login">Log In</button>
         </form>
     );
