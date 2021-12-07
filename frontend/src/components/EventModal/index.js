@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Modal } from '../../context/Modal';
+import EventForm from './EventForm';
 import * as eventActions from '../../store/event';
 import './Event.css';
 
 function Event() {
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const eventsObj = useSelector(state => state.event);
     const events = Object.values(eventsObj);
@@ -22,11 +25,12 @@ function Event() {
 
     return (
         <>
-            <button
-                className='new-event-button'
-                hidden={sessionUser ? false : true}
-            > +Event
-            </button>
+            <button onClick={() => setShowModal(true)} hidden={sessionUser ? false : true}>+Event</button>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <EventForm sessionUser={sessionUser} />
+                </Modal>
+            )}
             <ul className='event-list'>
                 {events.length > 0 && events.map(event => (
                     <NavLink style={{ "textDecoration": "none", "color": "black" }} key={event.id} to={`/events/${event.id}`}>

@@ -9,3 +9,16 @@
     color: red;
     font-family: cursive;
 }
+
+.user-interact button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.user-interact button:hover {
+    color: lightblue;
+}

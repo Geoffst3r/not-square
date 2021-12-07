@@ -35,18 +35,18 @@
     cursor: pointer;
 }
 
-button {
+/* button {
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     overflow: hidden;
     outline: none;
-}
+} */
 
-button:hover {
+/* button:hover {
     color: lightblue;
-}
+} */
 
 .login-errors {
     background-color: red;

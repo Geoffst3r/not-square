@@ -1,0 +1,15 @@
+form.event-form {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 700px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.event-input {
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    margin: auto;
+}
