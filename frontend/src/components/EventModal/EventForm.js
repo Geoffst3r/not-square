@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as eventActions from "../../store/event";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import './EventForm.css';
 
 function EventForm({ sessionUser }) {
@@ -25,7 +24,7 @@ function EventForm({ sessionUser }) {
 
     return (
         <form onSubmit={handleSubmit} className="event-form">
-            <ul className="errors">
+            <ul className="event-errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
             <label className="event-input">
