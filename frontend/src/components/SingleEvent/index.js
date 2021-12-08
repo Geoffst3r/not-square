@@ -47,6 +47,10 @@ function SingleEventPage() {
         minutes = date.getMinutes();
     }
 
+    const callSetter = () => {
+        setShowModal(false);
+    };
+
     return (
         <div className='single-event-page'>
             <p className='created-by'>{username ? `Created by: ${username}` : null}</p>
@@ -56,7 +60,7 @@ function SingleEventPage() {
             <button onClick={() => setShowModal(true)} hidden={sessionUserId === userId ? false : true}>Edit Event</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EventForm event={event} sessionUser={sessionUser} />
+                    <EventForm event={event} callSetter={callSetter} sessionUser={sessionUser} />
                 </Modal>
             )}
         </div>

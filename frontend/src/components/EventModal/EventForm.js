@@ -5,8 +5,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import './EventForm.css';
 
-function EventForm({ event, sessionUser }) {
+function EventForm({ event, callSetter, sessionUser }) {
     const { id } = sessionUser;
+    console.log(callSetter);
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState(event ? event.title : "");
@@ -27,8 +28,6 @@ function EventForm({ event, sessionUser }) {
                 const data = await res.json();
                 if (data && data.errors) return setErrors(data.errors);
             });
-        // dispatch(singleEventActions.getSingleEvent(submitEvent.id));
-        // return history.push(`/events/${submitEvent.id}`);
     };
 
     const handleEdit = (e) => {
@@ -41,7 +40,8 @@ function EventForm({ event, sessionUser }) {
                 if (data && data.errors) return setErrors(data.errors);
             });
         dispatch(singleEventActions.getSingleEvent(event.id));
-        return history.push(`/events/${event.id}`);
+        history.push(`/events/${event.id}`);
+        return callSetter(false);
     };
 
     return (
