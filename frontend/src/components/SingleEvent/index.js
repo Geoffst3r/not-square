@@ -20,10 +20,6 @@ function SingleEventPage() {
         dispatch(eventActions.getSingleEvent(id)).then(res => setEvent(res));
     }, [dispatch, id]);
 
-    useEffect(() => {
-        dispatch(eventActions.editEvent(event)).then(res => setEvent(res));
-    }, [dispatch, event]);
-
     const { User, body, title, time, userId } = event;
     const username = User?.username;
     const date = new Date(time);
