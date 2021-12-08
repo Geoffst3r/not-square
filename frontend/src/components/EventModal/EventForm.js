@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import * as eventActions from "../../store/event";
 import * as singleEventActions from "../../store/singleEvent";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import './EventForm.css';
 
 function EventForm({ event, sessionUser }) {
     const { id } = sessionUser;
     const dispatch = useDispatch();
+    const history = useHistory();
     const [title, setTitle] = useState(event ? event.title : "");
     const [body, setBody] = useState(event ? event.body : "");
     const [day, setDay] = useState("");
@@ -28,11 +30,13 @@ function EventForm({ event, sessionUser }) {
     const handleEdit = (e) => {
         e.preventDefault();
         const dateTime = new Date(`${day}T${time}`);
-        return dispatch(singleEventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
+        dispatch(singleEventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
+        dispatch(singleEventActions.getSingleEvent(event.id));
+        return history.push(`/events/${event.id}`);
     };
 
     return (
