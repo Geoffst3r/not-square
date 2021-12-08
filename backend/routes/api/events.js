@@ -61,7 +61,7 @@ router.put('/:id(\\d+)',
             await event.update({
                 title, body, time, userId, createdAt, updatedAt
             });
-            return event;
+            return res.json(event);
         }
     }));
 

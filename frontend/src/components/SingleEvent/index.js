@@ -18,7 +18,7 @@ function SingleEventPage() {
 
     useEffect(() => {
         dispatch(eventActions.getSingleEvent(id)).then(res => setEvent(res));
-    }, [dispatch, id]);
+    }, [dispatch, id, event]);
 
     const { User, body, title, time, userId } = event;
     const username = User?.username;
