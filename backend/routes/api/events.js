@@ -70,7 +70,7 @@ router.delete('/:id(\\d+)',
     requireAuth,
     asyncHandler(async (req, res) => {
         const eventId = parseInt(req.params.id, 10);
-        const event = Event.findByPk(eventId);
+        const event = await Event.findByPk(eventId);
 
         if (event) {
             await event.destroy();

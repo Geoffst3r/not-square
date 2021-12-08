@@ -7,7 +7,6 @@ import './EventForm.css';
 
 function EventForm({ event, callSetter, sessionUser }) {
     const { id } = sessionUser;
-    console.log(callSetter);
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState(event ? event.title : "");
@@ -40,8 +39,8 @@ function EventForm({ event, callSetter, sessionUser }) {
                 if (data && data.errors) return setErrors(data.errors);
             });
         dispatch(singleEventActions.getSingleEvent(event.id));
-        history.push(`/events/${event.id}`);
-        return callSetter(false);
+        callSetter();
+        return history.push(`/events/${event.id}`);
     };
 
     return (

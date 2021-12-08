@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { Modal } from '../../context/Modal';
 import EventForm from '../EventModal/EventForm';
 import * as singleEventActions from '../../store/singleEvent';
+import * as eventActions from '../../store/event';
 import './SingleEvent.css';
 
 function SingleEventPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const event = useSelector(state => state.singleEvent);
@@ -63,6 +65,12 @@ function SingleEventPage() {
                     <EventForm event={event} callSetter={callSetter} sessionUser={sessionUser} />
                 </Modal>
             )}
+            <button
+                hidden={sessionUserId === userId ? false : true}
+                onClick={() => {
+                    dispatch(eventActions.deleteEvent(id))
+                    history.push('/')
+                }}>Delete Event</button>
         </div>
     )
 }
