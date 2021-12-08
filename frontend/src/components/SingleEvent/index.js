@@ -12,7 +12,6 @@ function SingleEventPage() {
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const event = useSelector(state => state.singleEvent);
-    console.log(event);
     let sessionUserId;
     if (sessionUser) sessionUserId = sessionUser.id;
     const [showModal, setShowModal] = useState(false);
