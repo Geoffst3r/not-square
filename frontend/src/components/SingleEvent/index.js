@@ -1,23 +1,24 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import { Modal } from '../../context/Modal';
-import * as eventActions from '../../store/event';
 import EventForm from '../EventModal/EventForm';
+import * as singleEventActions from '../../store/singleEvent';
 import './SingleEvent.css';
 
 function SingleEventPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
+    const event = useSelector(state => state.singleEvent);
+    console.log(event);
     let sessionUserId;
     if (sessionUser) sessionUserId = sessionUser.id;
-    const [event, setEvent] = useState('');
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        dispatch(eventActions.getSingleEvent(id)).then(res => setEvent(res));
+        dispatch(singleEventActions.getSingleEvent(id))
     }, [dispatch, id]);
 
     const { User, body, title, time, userId } = event;
@@ -25,6 +26,7 @@ function SingleEventPage() {
     const date = new Date(time);
     const day = date.toLocaleDateString();
     let hours;
+    let minutes;
     let ampm;
     if (date.getHours() === 12) {
         hours = date.getHours();
@@ -39,7 +41,12 @@ function SingleEventPage() {
         hours = date.getHours() - 12;
         ampm = 'PM';
     }
-    const minutes = date.getMinutes();
+
+    if (date.getMinutes() < 10) {
+        minutes = `0${date.getMinutes()}`;
+    } else {
+        minutes = date.getMinutes();
+    }
 
     return (
         <div className='single-event-page'>

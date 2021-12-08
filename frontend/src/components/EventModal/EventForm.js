@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as eventActions from "../../store/event";
+import * as singleEventActions from "../../store/singleEvent";
 import { useDispatch } from "react-redux";
 import './EventForm.css';
 
@@ -27,7 +28,7 @@ function EventForm({ event, sessionUser }) {
     const handleEdit = (e) => {
         e.preventDefault();
         const dateTime = new Date(`${day}T${time}`);
-        return dispatch(eventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
+        return dispatch(singleEventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
