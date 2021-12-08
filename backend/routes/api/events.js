@@ -54,7 +54,7 @@ router.put('/:id(\\d+)',
     validateNewEvent,
     asyncHandler(async (req, res) => {
         const eventId = parseInt(req.params.id, 10);
-        const event = Event.findByPk(eventId);
+        const event = await Event.findByPk(eventId);
         const { title, body, time, userId, createdAt, updatedAt } = req.body;
 
         if (event) {
