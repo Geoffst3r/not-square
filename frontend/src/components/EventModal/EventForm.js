@@ -13,7 +13,6 @@ function EventForm({ event, sessionUser }) {
     const [body, setBody] = useState(event ? event.body : "");
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
-    const [submitEvent, setSubmitEvent] = useState({});
     const [errors, setErrors] = useState([]);
 
     const text = event ? 'Edit Event' : 'Post Event';
@@ -23,12 +22,11 @@ function EventForm({ event, sessionUser }) {
         setErrors([]);
         const dateTime = new Date(`${day}T${time}`);
         dispatch(eventActions.makeNewEvent({ title, body, time: dateTime, userId: id }))
-            .then(res => setSubmitEvent(res))
+            .then(event => history.push(`/events/${event.id}`))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) return setErrors(data.errors);
             });
-        console.log(submitEvent);
         // dispatch(singleEventActions.getSingleEvent(submitEvent.id));
         // return history.push(`/events/${submitEvent.id}`);
     };
