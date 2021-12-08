@@ -44,7 +44,7 @@ export const editEvent = (event) => async (dispatch) => {
 const singleEventReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        case GET_SINGLE_EVENT:
+        case GET_SINGLE_EVENT || EDIT_EVENT:
             newState = { ...action.event };
             return newState;
         default:
