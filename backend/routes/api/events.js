@@ -55,12 +55,11 @@ router.put('/:id(\\d+)',
     asyncHandler(async (req, res) => {
         const eventId = parseInt(req.params.id, 10);
         const event = Event.findByPk(eventId);
+        const { title, body, time, userId, createdAt, updatedAt } = req.body;
 
         if (event) {
             await event.update({
-                title: req.body.title,
-                body: req.body.body,
-                time: req.body.time
+                title, body, time, userId, createdAt, updatedAt
             });
             return event;
         }

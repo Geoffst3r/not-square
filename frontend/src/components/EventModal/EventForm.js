@@ -3,14 +3,16 @@ import * as eventActions from "../../store/event";
 import { useDispatch } from "react-redux";
 import './EventForm.css';
 
-function EventForm({ sessionUser }) {
+function EventForm({ event, sessionUser }) {
     const { id } = sessionUser;
     const dispatch = useDispatch();
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
+    const [title, setTitle] = useState(event ? event.title : "");
+    const [body, setBody] = useState(event ? event.body : "");
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
     const [errors, setErrors] = useState([]);
+
+    const text = event ? 'Edit Event' : 'Post Event';
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,8 +24,18 @@ function EventForm({ sessionUser }) {
             });
     };
 
+    const handleEdit = (e) => {
+        e.preventDefault();
+        const dateTime = new Date(`${day}T${time}`);
+        return dispatch(eventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    }
+
     return (
-        <form onSubmit={handleSubmit} className="event-form">
+        <form onSubmit={event ? handleEdit : handleSubmit} className="event-form">
             <ul className="event-errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -65,7 +77,7 @@ function EventForm({ sessionUser }) {
                     />
                 </label>
             </div>
-            <button type="submit" className="new-event-submit">Post Event</button>
+            <button type="submit" className="event-submit">{text}</button>
         </form>
     );
 }

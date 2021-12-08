@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_EVENTS = '/events/getAllEvents';
 const NEW_EVENT = '/events/new';
 const GET_SINGLE_EVENT = '/events/getSingleEvent';
+const EDIT_EVENT = '/events/edit';
 
 const get = (events) => {
     return {
@@ -24,6 +25,13 @@ const getEvent = (event) => {
         event
     }
 };
+
+const editSingleEvent = (event) => {
+    return {
+        type: EDIT_EVENT,
+        event
+    }
+}
 
 export const getEvents = () => async (dispatch) => {
     const res = await csrfFetch('/api/events');
@@ -58,10 +66,25 @@ export const makeNewEvent = (event) => async (dispatch) => {
     }
 };
 
+export const editEvent = (event) => async (dispatch) => {
+    const { title, body, time, id, createdAt, updatedAt, userId } = event;
+    const res = await csrfFetch(`/api/events/${event.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            title, body, time, id, createdAt, updatedAt, userId
+        })
+    });
+    if (res.ok) {
+        const event = await res.json();
+        dispatch(editSingleEvent(event));
+        return event;
+    }
+}
+
 const eventReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        case GET_SINGLE_EVENT:
+        case GET_SINGLE_EVENT || EDIT_EVENT:
             newState = {};
             newState[action.event.id] = action.event;
             return newState;
