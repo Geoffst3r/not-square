@@ -17,7 +17,7 @@ function SingleEventPage() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        dispatch(singleEventActions.getSingleEvent(id))
+        dispatch(singleEventActions.getSingleEvent(id));
     }, [dispatch, id]);
 
     const { User, body, title, time, userId } = event;
