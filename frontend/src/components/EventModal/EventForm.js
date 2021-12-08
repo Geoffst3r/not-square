@@ -13,27 +13,34 @@ function EventForm({ event, sessionUser }) {
     const [body, setBody] = useState(event ? event.body : "");
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
+    const [submitEvent, setSubmitEvent] = useState({});
     const [errors, setErrors] = useState([]);
 
     const text = event ? 'Edit Event' : 'Post Event';
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErrors([]);
         const dateTime = new Date(`${day}T${time}`);
-        return dispatch(eventActions.makeNewEvent({ title, body, time: dateTime, userId: id }))
+        dispatch(eventActions.makeNewEvent({ title, body, time: dateTime, userId: id }))
+            .then(res => setSubmitEvent(res))
             .catch(async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.errors) return setErrors(data.errors);
             });
+        console.log(submitEvent);
+        // dispatch(singleEventActions.getSingleEvent(submitEvent.id));
+        // return history.push(`/events/${submitEvent.id}`);
     };
 
     const handleEdit = (e) => {
         e.preventDefault();
+        setErrors([]);
         const dateTime = new Date(`${day}T${time}`);
         dispatch(singleEventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
             .catch(async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.errors) return setErrors(data.errors);
             });
         dispatch(singleEventActions.getSingleEvent(event.id));
         return history.push(`/events/${event.id}`);
