@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from "react-router";
 import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import EventForm from './EventForm';
@@ -11,7 +10,6 @@ import './Event.css';
 
 function Event() {
     const dispatch = useDispatch();
-    // const history = useHistory();
     const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const userId = sessionUser?.id;
@@ -32,8 +30,6 @@ function Event() {
         event.timeString = time.toLocaleTimeString();
     });
 
-    // const pageRefresh = () => history.push('/');
-
     useEffect(() => {
         dispatch(eventActions.getEvents());
     }, [dispatch]);
@@ -52,7 +48,7 @@ function Event() {
             )}
             <p className='your-event-list'>Your Events</p>
             <ul className='event-list'>
-                {userEvents.length > 0 ? userEvents.map(event => (
+                {sessionUser ? (userEvents.length > 0 ? userEvents.map(event => (
                     <NavLink style={{ "textDecoration": "none", "color": "black" }}
                         key={event.id} to={`/events/${event.id}`}>
                         <ul className='event'>
@@ -60,7 +56,7 @@ function Event() {
                             <li className='event-time'>{`${event.dayString} ${event.timeString}`}</li>
                         </ul>
                     </NavLink>
-                )) : <li className='empty-events'>You do not have any events :(</li>}
+                )) : <li className='empty-events'>You do not have any events</li>) : <li className='empty-events'>Log in to view your events</li>}
             </ul>
             <p className='all-event-list'>All Events</p>
             <ul className='event-list'>
