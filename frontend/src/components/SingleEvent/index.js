@@ -6,6 +6,7 @@ import { Modal } from '../../context/Modal';
 import EventForm from '../EventModal/EventForm';
 import * as singleEventActions from '../../store/singleEvent';
 import * as eventActions from '../../store/event';
+import * as userEventActions from '../../store/userEvents';
 import './SingleEvent.css';
 
 function SingleEventPage() {
@@ -61,7 +62,9 @@ function SingleEventPage() {
 
     const deleteEvent = () => {
         dispatch(eventActions.deleteEvent(id));
-        history.push('/')
+        dispatch(eventActions.getEvents());
+        dispatch(userEventActions.getUserEvents(sessionUserId));
+        history.push('/');
     };
 
     return (
