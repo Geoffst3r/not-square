@@ -10,8 +10,8 @@ module.exports = {
       */
     return queryInterface.bulkInsert('Rsvps', [
       { userId: 2, eventId: 1 },
-      { userId: 2, eventId: 2 },
-      { userId: 2, eventId: 3 }
+      { userId: 1, eventId: 2 },
+      { userId: 1, eventId: 3 }
     ], {});
   },
 

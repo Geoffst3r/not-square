@@ -25,7 +25,7 @@ const validateNewEvent = [
 
 // Get all events
 router.get('/', asyncHandler(async (req, res) => {
-    const events = await Event.findAll();
+    const events = await Event.findAll({ order: [["time", "DESC"]] });
     return res.json(events);
 }));
 
