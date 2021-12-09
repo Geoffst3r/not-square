@@ -59,6 +59,11 @@ function SingleEventPage() {
         setShowModal(false);
     };
 
+    const deleteEvent = () => {
+        dispatch(eventActions.deleteEvent(id));
+        history.push('/')
+    };
+
     return (
         <div className='single-event-page'>
             <p className='event-time'>{`${day}, ${month} ${dayOfMonth}, ${hours}:${minutes}${ampm}`}</p>
@@ -79,10 +84,7 @@ function SingleEventPage() {
                 <button
                     className="delete-event-single"
                     hidden={sessionUserId === userId ? false : true}
-                    onClick={() => {
-                        dispatch(eventActions.deleteEvent(id))
-                        history.push('/')
-                    }}>Delete Event</button>
+                    onClick={() => deleteEvent()}>Delete Event</button>
             </div>
         </div>
     )
