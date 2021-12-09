@@ -25,7 +25,16 @@ const validateNewEvent = [
 
 // Get all events
 router.get('/', asyncHandler(async (req, res) => {
-    const events = await Event.findAll({ order: [["time", "DESC"]] });
+    const events = await Event.findAll();
+    return res.json(events);
+}));
+
+// Get all user events
+router.get('/user/:id(\\d+)', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const events = await Event.findAll({
+        where: userId
+    });
     return res.json(events);
 }));
 

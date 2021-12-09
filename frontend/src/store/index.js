@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import eventReducer from "./event";
 import sessionReducer from "./session";
 import singleEventReducer from "./singleEvent";
+import eventUserReducer from "./userEvents";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   events: eventReducer,
+  userEvents: eventUserReducer,
   singleEvent: singleEventReducer
 });
 
