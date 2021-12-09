@@ -25,6 +25,8 @@ li.event-time {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px dashed gray;
+    padding-bottom: 20px;
 }
 
 button.add-event {
@@ -52,6 +54,11 @@ button.add-event:hover {
     font-size: 24px;
     font-family: monospace;
     font-weight: bold;
+    color: gray;
+}
+
+.your-event-list {
+    margin-top: 10px;
 }
 
 .empty-events {

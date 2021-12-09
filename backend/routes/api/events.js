@@ -11,12 +11,18 @@ const router = express.Router();
 const validateNewEvent = [
     check('time')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide the time of the event.'),
+        .withMessage('Please provide the time of the event.')
+        .custom((val) => {
+            if (new Date(val) < new Date()) {
+                throw new Error('Time of event must be in the future.')
+            }
+            return true;
+        }),
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Please provide the title of the event.')
-        .isLength({ max: 255 })
-        .withMessage('Title cannot be longer than 255 characters.'),
+        .isLength({ max: 150 })
+        .withMessage('Title cannot be longer than 150 characters.'),
     check('body')
         .exists({ checkFalsy: true })
         .withMessage('Please provide the body of the event.'),
@@ -33,7 +39,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/user/:id(\\d+)', asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.id, 10);
     const events = await Event.findAll({
-        where: userId
+        where: { userId }
     });
     return res.json(events);
 }));
