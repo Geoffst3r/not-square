@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import SignupFormModal from "../SignupFormModal";
 import './LoginForm.css'
 
-function LoginForm({ modal }) {
+function LoginForm({ callSetter }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
@@ -57,7 +57,7 @@ function LoginForm({ modal }) {
                     }}
                 >Demo</button>
             </div>
-            <button type="submit" className="login">Log In</button>
+            <button type="submit" className="login" onClick={() => callSetter()} >Log In</button>
         </form>
     );
 }

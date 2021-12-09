@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SignupForm from './SignupForm';
 
-function SignupFormModal({ modal, title }) {
-    const [showModal, setShowModal] = useState(modal);
+function SignupFormModal({ title }) {
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
