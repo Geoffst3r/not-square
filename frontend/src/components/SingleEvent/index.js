@@ -25,7 +25,13 @@ function SingleEventPage() {
     const { User, body, title, time, userId } = event;
     const username = User?.username;
     const date = new Date(time);
-    const day = date.toLocaleDateString();
+    const weekday =
+        ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const day = weekday[date.getDay()];
+    const months =
+        ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const month = months[date.getMonth()];
+    const dayOfMonth = date.getDate();
     let hours;
     let minutes;
     let ampm;
@@ -55,22 +61,29 @@ function SingleEventPage() {
 
     return (
         <div className='single-event-page'>
-            <p className='created-by'>{username ? `Created by: ${username}` : null}</p>
+            <p className='event-time'>{`${day}, ${month} ${dayOfMonth}, ${hours}:${minutes}${ampm}`}</p>
             <p className='event-title'>{title}</p>
+            <div className="created-by-wrapper">
+                <i className="fas fa-user-circle fa-lg" />
+                <p className='created-by'>{username ? `Posted by ${username}` : null}</p>
+            </div>
+            <p className="details">Details</p>
             <p className='event-body'>{body}</p>
-            <p className='event-time'>{`${day} ${hours}:${minutes} ${ampm}`}</p>
-            <button onClick={() => setShowModal(true)} hidden={sessionUserId === userId ? false : true}>Edit Event</button>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <EventForm event={event} callSetter={callSetter} sessionUser={sessionUser} />
-                </Modal>
-            )}
-            <button
-                hidden={sessionUserId === userId ? false : true}
-                onClick={() => {
-                    dispatch(eventActions.deleteEvent(id))
-                    history.push('/')
-                }}>Delete Event</button>
+            <div className="edit-delete">
+                <button className="edit-event-single" onClick={() => setShowModal(true)} hidden={sessionUserId === userId ? false : true}>Edit Event</button>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <EventForm event={event} callSetter={callSetter} sessionUser={sessionUser} />
+                    </Modal>
+                )}
+                <button
+                    className="delete-event-single"
+                    hidden={sessionUserId === userId ? false : true}
+                    onClick={() => {
+                        dispatch(eventActions.deleteEvent(id))
+                        history.push('/')
+                    }}>Delete Event</button>
+            </div>
         </div>
     )
 }

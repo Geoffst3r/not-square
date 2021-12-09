@@ -3,11 +3,46 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 20px;
-    width: 75%;
-    justify-content: center;
 }
 
 li.event-title {
     text-decoration: none;
     font-size: 20px;
+    justify-content: center;
+}
+
+li.event-time {
+    font-size: 12px;
+}
+
+.event:hover {
+    box-shadow: -5px 5px 5px rgba(255, 0, 0, 0.6);
+    transform: translate(5px, -5px);
+}
+
+.event-list {
+    padding-right: 40px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+button.add-event {
+    background-color: red;
+    background-repeat: no-repeat;
+    border: 1px solid red;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin-left: 40px;
+    border-radius: 10px;
+    height: 30px;
+    width: 100px;
+    font-size: 20px;
+}
+
+button.add-event:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+    color: black;
 }

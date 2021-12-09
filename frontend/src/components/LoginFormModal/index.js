@@ -11,7 +11,7 @@ function LoginFormModal({ title }) {
 
     return (
         <>
-            <button onClick={() => setShowLoginModal(true)}>{title}</button>
+            <button className={title === 'Log in' ? 'login-modalButton' : 'login-else'} onClick={() => setShowLoginModal(true)}>{title}</button>
             {showLoginModal && (
                 <Modal onClose={() => setShowLoginModal(false)}>
                     <LoginForm callSetter={callSetter} />

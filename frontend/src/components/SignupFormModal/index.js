@@ -7,7 +7,7 @@ function SignupFormModal({ title }) {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>{title}</button>
+            <button className={title === 'Sign up' ? 'signup-modalButton' : 'signup-else'} onClick={() => setShowModal(true)}>{title}</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <SignupForm />

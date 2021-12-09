@@ -25,7 +25,7 @@ function Event() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)} hidden={sessionUser ? false : true}>+Event</button>
+            <button className="add-event" onClick={() => setShowModal(true)} hidden={sessionUser ? false : true}>+Event</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EventForm sessionUser={sessionUser} />

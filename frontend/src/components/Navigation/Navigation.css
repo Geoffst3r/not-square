@@ -8,6 +8,7 @@
     text-decoration: none;
     color: red;
     font-family: cursive;
+    font-size: 30px;
 }
 
 .user-interact button {
@@ -21,4 +22,32 @@
 
 .user-interact button:hover {
     color: lightblue;
+}
+
+.profile-button {
+    margin-right: 40px;
+}
+
+.profile-button > i {
+    margin-left: 10px;
+}
+
+.user-stuff {
+    display: inline-flex;
+}
+
+.user-stuff > p {
+    font-size: 22px;
+}
+
+.profile-dropdown {
+    list-style: none;
+}
+
+.logout-profile-button {
+    justify-self: flex-end;
+}
+
+.greeting {
+    margin-top: 3px;
 }
