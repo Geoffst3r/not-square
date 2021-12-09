@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <li className='user-interact'>
                 <LoginFormModal title='Log in' />
-                <SignupFormModal title='Sign Up' />
+                <SignupFormModal title='Sign up' />
             </li>
         );
     }

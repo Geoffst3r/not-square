@@ -3,11 +3,22 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 20px;
-    width: 75%;
-    justify-content: center;
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 li.event-title {
     text-decoration: none;
     font-size: 20px;
+    justify-content: center;
+}
+
+li.event-time {
+    font-size: 12px;
+}
+
+.event:hover {
+    box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.6);
+    margin-left: 10px;
+    margin-bottom: 30px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import SignupFormModal from "../SignupFormModal";
+import SignupFormModal from '../SignupFormModal';
 import './LoginForm.css'
 
 function LoginForm({ callSetter }) {
@@ -13,6 +13,7 @@ function LoginForm({ callSetter }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
+        callSetter();
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();

@@ -22,3 +22,7 @@
 .user-interact button:hover {
     color: lightblue;
 }
+
+ul.navbar > li {
+    font-size: 30px;
+}

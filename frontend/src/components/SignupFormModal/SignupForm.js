@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import LoginFormModal from "../LoginFormModal";
+// import LoginFormModal from "../LoginFormModal";
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -63,10 +63,10 @@ function SignupFormPage() {
                     required
                 />
             </label>
-            <ul className="errors">
+            <ul className="signup-errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <LoginFormModal title="Already have an account? Log in!" />
+            {/* <LoginFormModal title="Already have an account? Log in!" /> */}
             <button type="submit" className="signup">Sign Up</button>
         </form>
     );
