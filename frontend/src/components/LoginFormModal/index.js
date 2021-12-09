@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
+// import SignupForm from '../SignupFormModal/SignupForm'
+
 
 function LoginFormModal({ title }) {
     const [showLoginModal, setShowLoginModal] = useState(false);
+    // const [showSignupModal, setShowSignupModal] = useState(true);
 
     const callSetter = () => {
-        setShowLoginModal(false);
+        return setShowLoginModal(false);
+        // return (
+        //     <>
+        //         {/* {showSignupModal && ( */}
+        //         <Modal>
+        //             <SignupForm />
+        //         </Modal>
+        //         {/* )} */}
+        //     </>
+        // );
     };
 
     return (
