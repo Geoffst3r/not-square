@@ -74,7 +74,7 @@ router.delete('/:id(\\d+)',
 
         if (event) {
             await event.destroy();
-            res.json('Success');
+            return res.json('Success');
         }
     }));
 
