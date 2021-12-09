@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import SignupFormModal from '../SignupFormModal';
+import SignupForm from '../SignupFormModal/SignupForm';
+import { Modal } from '../../context/Modal';
 import './LoginForm.css'
 
 function LoginForm({ callSetter }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
+    const [showModal, setShowModal] = useState(true);
     const [errors, setErrors] = useState([]);
 
-    useEffect(() => {
-        if (!callSetter) return;
-
-        const ul = document.querySelector('.signup-else');
-        ul.addEventListener('click', callSetter);
-
-        return ul.removeEventListener('click', callSetter);
-    }, [callSetter]);
+    const closeLoginRenderSignup = () => {
+        callSetter();
+        return (
+            <>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <SignupForm />
+                    </Modal>
+                )}
+            </>
+        );
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,7 +63,9 @@ function LoginForm({ callSetter }) {
                     ))}
             </ul>
             <div className="demo-user-and-signup">
-                <SignupFormModal title="Don't have an account? Sign up!" />
+                <button
+                    onClick={() => closeLoginRenderSignup()}
+                >Don't have an account? Sign up!</button>
                 <button
                     type="submit"
                     onClick={() => {
