@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import SignupFormModal from '../SignupFormModal';
@@ -10,10 +10,18 @@ function LoginForm({ callSetter }) {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    useEffect(() => {
+        if (!callSetter) return;
+
+        const ul = document.querySelector('.signup-else');
+        ul.addEventListener('click', callSetter);
+
+        return ul.removeEventListener('click', callSetter);
+    }, [callSetter]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        callSetter();
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
