@@ -51,3 +51,14 @@
 .greeting {
     margin-top: 3px;
 }
+
+.profile-dropdown {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.profile-dropdown > li > button {
+    color: gray;
+}
