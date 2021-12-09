@@ -9,8 +9,6 @@ function LoginForm({ callSetter }) {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    console.log(callSetter);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -50,6 +48,7 @@ function LoginForm({ callSetter }) {
             </ul>
             <div className="demo-user-and-signup">
                 <button
+                    type="button"
                     onClick={() => callSetter()}
                 >Don't have an account? Sign up!</button>
                 <button

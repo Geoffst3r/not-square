@@ -62,3 +62,22 @@
     margin-left: 12px;
     margin-right: 20px;
 }
+
+.login-modal-render {
+    display: inline-flex;
+    margin-bottom: -20px;
+    justify-content: space-between;
+}
+
+.login-modal-render button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.login-modal-render button:hover {
+    color: lightblue;
+}

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 // import LoginFormModal from "../LoginFormModal";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({ callSetter }) {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -66,7 +66,9 @@ function SignupFormPage() {
             <ul className="signup-errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            {/* <LoginFormModal title="Already have an account? Log in!" /> */}
+            <div className="login-modal-render">
+                <button type="button" onClick={() => callSetter()}>Already have an account? Log in!</button>
+            </div>
             <button type="submit" className="signup">Sign Up</button>
         </form>
     );
