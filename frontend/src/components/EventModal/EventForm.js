@@ -45,9 +45,6 @@ function EventForm({ event, callSetter, sessionUser }) {
 
     return (
         <form onSubmit={event ? handleEdit : handleSubmit} className="event-form">
-            <ul className="event-errors">
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
             <label className="event-input">
                 Title
                 <input
@@ -60,6 +57,7 @@ function EventForm({ event, callSetter, sessionUser }) {
             <label className="event-input">
                 Body
                 <textarea
+                    style={{ "resize": "none" }}
                     type="text"
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
@@ -67,7 +65,7 @@ function EventForm({ event, callSetter, sessionUser }) {
                 />
             </label>
             <div className='set-time'>
-                <label className="event-input">
+                <label className="event-input set-day">
                     Day
                     <input
                         type="date"
@@ -76,7 +74,7 @@ function EventForm({ event, callSetter, sessionUser }) {
                         required
                     />
                 </label>
-                <label className="event-input">
+                <label className="event-input set-timing">
                     Time
                     <input
                         type="time"
@@ -86,6 +84,9 @@ function EventForm({ event, callSetter, sessionUser }) {
                     />
                 </label>
             </div>
+            <ul className="event-errors">
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
             <button type="submit" className="event-submit">{text}</button>
         </form>
     );

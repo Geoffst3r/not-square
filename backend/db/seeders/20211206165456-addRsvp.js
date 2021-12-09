@@ -8,9 +8,11 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkInsert('Rsvps', [{
-      userId: 1, eventId: 1
-    }], {});
+    return queryInterface.bulkInsert('Rsvps', [
+      { userId: 2, eventId: 1 },
+      { userId: 2, eventId: 2 },
+      { userId: 2, eventId: 3 }
+    ], {});
   },
 
   down: (queryInterface, Sequelize) => {

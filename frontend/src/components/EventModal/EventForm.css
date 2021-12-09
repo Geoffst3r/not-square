@@ -1,15 +1,85 @@
-form.event-form {
-    display: flex;
-    flex-direction: column;
-    height: 700px;
-    width: 700px;
-    align-items: center;
+.event-form {
+    position: relative;
+    margin: auto;
+    padding: 1em;
     box-sizing: border-box;
+
+    display: grid;
+    grid-gap: 20px;
+    width: 600px;
+    height: 800px;
 }
 
 .event-input {
     display: flex;
     flex-direction: column;
-    padding: auto;
-    margin: auto;
+}
+
+.event-input > input {
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    font-size: 16px;
+}
+
+.event-input > textarea {
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    font-size: 16px;
+}
+
+.event-submit {
+    height: 30px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+}
+
+.event-submit:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+    cursor: pointer;
+    color: black;
+}
+
+.event-errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.event-errors > li {
+    list-style: none;
+    font-size: 20px;
+    color: red;
+}
+
+.event-form > label, .set-time > label {
+    font-family: cursive;
+    font-size: 20px;
+}
+
+.set-time {
+    display: inline-flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.set-day, .set-timing {
+    display: flex;
+    flex-direction: row;
+}
+
+input[type="date"], input[type="time"] {
+    background-color: transparent;
+    padding-left: 20px;
+    font-family: monospace;
+    color: gray;
+    border: none;
+    outline: none;
+    font-size: 20px;
 }
