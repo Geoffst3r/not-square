@@ -17,7 +17,6 @@ function SingleEventPage() {
     const sessionUser = useSelector(state => state.session.user);
     const event = useSelector(state => state.singleEvent);
     const rsvpObj = useSelector(state => state.rsvp);
-    console.log(rsvpObj);
     let sessionUserId;
     let rsvp;
     if (sessionUser) {
@@ -25,6 +24,15 @@ function SingleEventPage() {
         rsvp = rsvpObj[sessionUserId];
     }
     const [showModal, setShowModal] = useState(false);
+
+    const confirmRSVP = () => {
+        const rsvpInput = { eventId: id, userId: sessionUserId };
+        dispatch(rsvpActions.makeNewRSVP(rsvpInput));
+    };
+
+    const denyRSVP = () => {
+        dispatch(rsvpActions.deleteRSVP(rsvp.id));
+    };
 
     useEffect(() => {
         dispatch(singleEventActions.getSingleEvent(id));
@@ -96,6 +104,16 @@ function SingleEventPage() {
                     className="delete-event-single"
                     hidden={sessionUserId === userId ? false : true}
                     onClick={() => deleteEvent()}>Delete Event</button>
+                <div className='rsvp'>
+                    <p className='areYouGoing-msg'>Are you going?</p>
+                    {sessionUser ? (
+                        sessionUserId === event.userId ?
+                            <p>Everybody already knows you are going 😉</p> : (
+                                rsvp ? <button className='going-button' onClick={() => denyRSVP()} >Going<i className='fas fa-check'></i></button> :
+                                    <button className='notGoing-button' onClick={() => confirmRSVP()} >Going<i className='fas fa-times'></i></button>
+                            )
+                    ) : <p>Log in to RSVP</p>}
+                </div>
             </div>
         </div>
     )
