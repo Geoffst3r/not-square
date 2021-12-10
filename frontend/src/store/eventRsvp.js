@@ -18,9 +18,10 @@ const newRSVP = (rsvp) => {
     }
 };
 
-const deleteSingleRSVP = () => {
+const deleteSingleRSVP = (userId) => {
     return {
-        type: DELETE_RSVP
+        type: DELETE_RSVP,
+        userId
     }
 };
 
@@ -59,7 +60,7 @@ export const deleteRSVP = (rsvpInput) => async (dispatch) => {
     if (res.ok) {
         const msg = await res.json();
         if (msg === 'Success') {
-            dispatch(deleteSingleRSVP());
+            dispatch(deleteSingleRSVP(userId));
         };
     };
 };
@@ -67,6 +68,11 @@ export const deleteRSVP = (rsvpInput) => async (dispatch) => {
 const rsvpReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
+        case DELETE_RSVP:
+            newState = Object.assign({}, state);
+            let id = action.userId;
+            delete newState[id];
+            return newState;
         case GET_RSVPS:
             newState = {};
             action.rsvps.forEach(rsvp => newState[rsvp.userId] = rsvp);
