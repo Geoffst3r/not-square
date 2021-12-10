@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
 const { requireAuth } = require('../../utils/auth');
-const { Event, User } = require('../../db/models');
+const { Event, User, Rsvp } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
@@ -86,8 +86,12 @@ router.delete('/:id(\\d+)',
     asyncHandler(async (req, res) => {
         const eventId = parseInt(req.params.id, 10);
         const event = await Event.findByPk(eventId);
+        // const rsvps = await Rsvp.findAll({
+        //     where: { eventId }
+        // });
 
         if (event) {
+            // rsvps.forEach(async (rsvp) => await rsvp.destroy());
             await event.destroy();
             return res.json('Success');
         }
