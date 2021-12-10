@@ -18,10 +18,9 @@ const newRSVP = (rsvp) => {
     }
 };
 
-const deleteSingleRSVP = (id) => {
+const deleteSingleRSVP = () => {
     return {
-        type: DELETE_RSVP,
-        id
+        type: DELETE_RSVP
     }
 };
 
@@ -49,18 +48,18 @@ export const makeNewRSVP = (rsvpInput) => async (dispatch) => {
     }
 };
 
-export const deleteRSVP = (rsvpId) => async (dispatch) => {
+export const deleteRSVP = (rsvpInput) => async (dispatch) => {
+    const { eventId, userId } = rsvpInput;
     const res = await csrfFetch('/api/rsvp', {
         method: 'DELETE',
         body: JSON.stringify({
-            rsvpId
+            eventId, userId
         })
     });
-    console.log(res);
     if (res.ok) {
         const msg = await res.json();
         if (msg === 'Success') {
-            dispatch(deleteSingleRSVP(rsvpId));
+            dispatch(deleteSingleRSVP());
         };
     };
 };

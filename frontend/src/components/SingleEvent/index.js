@@ -31,7 +31,9 @@ function SingleEventPage() {
     };
 
     const denyRSVP = () => {
-        dispatch(rsvpActions.deleteRSVP(rsvp.id));
+        const rsvpInput = { eventId: id, userId: sessionUserId };
+        dispatch(rsvpActions.deleteRSVP(rsvpInput));
+        dispatch(rsvpActions.getRSVPs(id));
     };
 
     useEffect(() => {
@@ -108,9 +110,9 @@ function SingleEventPage() {
                     <p className='areYouGoing-msg'>Are you going?</p>
                     {sessionUser ? (
                         sessionUserId === event.userId ?
-                            <p>Everybody already knows you are going 😉</p> : (
-                                rsvp ? <button className='going-button' onClick={() => denyRSVP()} >Going<i className='fas fa-check'></i></button> :
-                                    <button className='notGoing-button' onClick={() => confirmRSVP()} >Going<i className='fas fa-times'></i></button>
+                            <button className='going-buttonPermanent'>Going <i className='fas fa-check fa-lg'></i></button> : (
+                                rsvp ? <button className='going-button' onClick={() => denyRSVP()} >Going <i className='fas fa-check fa-lg'></i></button> :
+                                    <button className='notGoing-button' onClick={() => confirmRSVP()} >Going <i className='fas fa-times fa-lg'></i></button>
                             )
                     ) : <p>Log in to RSVP</p>}
                 </div>

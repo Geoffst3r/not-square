@@ -86,12 +86,11 @@ router.delete('/:id(\\d+)',
     asyncHandler(async (req, res) => {
         const eventId = parseInt(req.params.id, 10);
         const event = await Event.findByPk(eventId);
-        // const rsvps = await Rsvp.findAll({
-        //     where: { eventId }
-        // });
+        await Rsvp.destroy({
+            where: { eventId }
+        });
 
         if (event) {
-            // rsvps.forEach(async (rsvp) => await rsvp.destroy());
             await event.destroy();
             return res.json('Success');
         }

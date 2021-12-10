@@ -24,11 +24,15 @@ router.post('/', asyncHandler(async (req, res) => {
 
 // delete an RSVP
 router.delete('/', asyncHandler(async (req, res) => {
-    const { rsvpId } = req.body;
-    const rsvp = await Rsvp.findByPk(rsvpId);
+    const { eventId, userId } = req.body;
+    const rsvp = await Rsvp.findOne({
+        where: {
+            userId, eventId
+        }
+    });
     if (rsvp) {
         await rsvp.destroy();
-        return res.json('Success')
+        return res.json('Success');
     };
 }));
 
