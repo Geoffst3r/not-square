@@ -7,6 +7,7 @@ import EventForm from '../EventModal/EventForm';
 import * as singleEventActions from '../../store/singleEvent';
 import * as eventActions from '../../store/event';
 import * as userEventActions from '../../store/userEvents';
+import * as rsvpActions from '../../store/eventRsvp';
 import './SingleEvent.css';
 
 function SingleEventPage() {
@@ -15,12 +16,19 @@ function SingleEventPage() {
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const event = useSelector(state => state.singleEvent);
+    const rsvpObj = useSelector(state => state.rsvp);
+    console.log(rsvpObj);
     let sessionUserId;
-    if (sessionUser) sessionUserId = sessionUser.id;
+    let rsvp;
+    if (sessionUser) {
+        sessionUserId = sessionUser.id;
+        rsvp = rsvpObj[sessionUserId];
+    }
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         dispatch(singleEventActions.getSingleEvent(id));
+        dispatch(rsvpActions.getRSVPs(id));
     }, [dispatch, id]);
 
     const { User, body, title, time, userId } = event;
