@@ -91,10 +91,6 @@ function SingleEventPage() {
             <div className="created-by-wrapper">
                 <i className="fas fa-user-circle fa-lg" />
                 <p className='created-by'>{username ? `Posted by ${username}` : null}</p>
-            </div>
-            <p className="details">Details</p>
-            <p className='event-body'>{body}</p>
-            <div className="edit-delete">
                 <button className="edit-event-single" onClick={() => setShowModal(true)} hidden={sessionUserId === userId ? false : true}>Edit Event</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
@@ -105,16 +101,18 @@ function SingleEventPage() {
                     className="delete-event-single"
                     hidden={sessionUserId === userId ? false : true}
                     onClick={() => deleteEvent()}>Delete Event</button>
-                <div className='rsvp'>
-                    <p className='areYouGoing-msg'>Are you going?</p>
-                    {sessionUser ? (
-                        sessionUserId === event.userId ?
-                            <button className='going-buttonPermanent'>Going <i className='fas fa-check fa-lg'></i></button> : (
-                                rsvp ? <button className='going-button' onClick={() => denyRSVP()} >Going <i className='fas fa-check fa-lg'></i></button> :
-                                    <button className='notGoing-button' onClick={() => confirmRSVP()} >Going <i className='fas fa-times fa-lg'></i></button>
-                            )
-                    ) : <p>Log in to RSVP</p>}
-                </div>
+            </div>
+            <p className="details">Details</p>
+            <p className='event-body'>{body}</p>
+            <div className='rsvp'>
+                <p className='areYouGoing-msg'>Are you going?</p>
+                {sessionUser ? (
+                    sessionUserId === event.userId ?
+                        <button className='going-buttonPermanent'>Going <i className='fas fa-check fa-lg'></i></button> : (
+                            rsvp ? <button className='going-button' onClick={() => denyRSVP()} >Going <i className='fas fa-check fa-lg'></i></button> :
+                                <button className='notGoing-button' onClick={() => confirmRSVP()} >Going <i className='fas fa-times fa-lg'></i></button>
+                        )
+                ) : <p>Log in to RSVP</p>}
             </div>
         </div>
     )
