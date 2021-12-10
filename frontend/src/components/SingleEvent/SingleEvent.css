@@ -41,13 +41,17 @@ p {
 }
 
 .edit-delete {
-    display: inline-flex;
-    flex-direction: column;
-    margin-top: 10px;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+    grid-template-rows: repeat(2, 75px);
+    row-gap: 10px;
+    grid-template-areas:
+    "edit rsvp"
+    "delete .";
 }
 
 .edit-event-single {
+    grid-area: edit;
     background-color: transparent;
     background-repeat: no-repeat;
     border: 1px solid blue;
@@ -58,6 +62,9 @@ p {
     font-size: 16px;
     padding: 5px 15px;
     border-radius: 5px;
+    height: 30px;
+    width: 150px;
+    align-self: flex-end;
 }
 
 .edit-event-single:hover {
@@ -66,6 +73,7 @@ p {
 }
 
 .delete-event-single {
+    grid-area: delete;
     background-color: red;
     background-repeat: no-repeat;
     border: 1px solid red;
@@ -76,8 +84,77 @@ p {
     font-size: 16px;
     padding: 5px 15px;
     border-radius: 5px;
+    height: 30px;
+    width: 150px;
 }
 
 .delete-event-single:hover {
     background-color: rgba(255, 0, 0, 0.7);
+}
+
+.rsvp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.areYouGoing-msg {
+    font-family: monospace;
+    font-size: 16px;
+    color: gray;
+}
+
+.going-buttonPermanent {
+    background-color: green;
+    background-repeat: no-repeat;
+    border: 1px solid green;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    height: 30px;
+    width: 125px;
+}
+
+.going-button {
+    background-color: green;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: 1px solid green;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    height: 30px;
+    width: 125px;
+}
+
+.going-button:hover {
+    color: black;
+    background-color: rgba(0, 255, 0, 0.8);
+}
+
+.notGoing-button {
+    background-color: orange;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: 1px solid orange;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    height: 30px;
+    width: 125px;
+}
+
+.notGoing-button:hover {
+    color: black;
+    opacity: 0.8;
 }
