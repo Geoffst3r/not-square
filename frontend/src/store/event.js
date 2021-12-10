@@ -64,6 +64,10 @@ export const deleteEvent = (id) => async (dispatch) => {
 const eventReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
+        case DELETE_EVENT:
+            newState = Object.assign({}, state);
+            delete newState[action.id];
+            return newState;
         case GET_EVENTS:
             newState = {};
             action.events.forEach(event => newState[event.id] = event);

@@ -27,13 +27,12 @@ function SingleEventPage() {
 
     const confirmRSVP = () => {
         const rsvpInput = { eventId: id, userId: sessionUserId };
-        return dispatch(rsvpActions.makeNewRSVP(rsvpInput));
+        dispatch(rsvpActions.makeNewRSVP(rsvpInput));
     };
 
     const denyRSVP = () => {
         const rsvpInput = { eventId: id, userId: sessionUserId };
         dispatch(rsvpActions.deleteRSVP(rsvpInput));
-        return dispatch(rsvpActions.getRSVPs(id));
     };
 
     useEffect(() => {
