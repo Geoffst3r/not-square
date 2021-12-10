@@ -7,6 +7,7 @@ p {
     font-size: 50px;
     font-weight: bold;
     margin-bottom: 10px;
+    overflow-wrap: normal;
 }
 
 .event-time {
@@ -26,7 +27,7 @@ p {
 }
 
 .details {
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 25px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,18 +41,7 @@ p {
     overflow-wrap: normal;
 }
 
-.edit-delete {
-    display: grid;
-    grid-template-columns: repeat(2, 300px);
-    grid-template-rows: repeat(2, 75px);
-    row-gap: 10px;
-    grid-template-areas:
-    "edit rsvp"
-    "delete .";
-}
-
 .edit-event-single {
-    grid-area: edit;
     background-color: transparent;
     background-repeat: no-repeat;
     border: 1px solid blue;
@@ -59,12 +49,11 @@ p {
     overflow: hidden;
     outline: none;
     color: blue;
-    font-size: 16px;
-    padding: 5px 15px;
+    font-size: 13px;
     border-radius: 5px;
-    height: 30px;
-    width: 150px;
-    align-self: flex-end;
+    height: 20px;
+    width: 75px;
+    align-self: flex-start;
 }
 
 .edit-event-single:hover {
@@ -73,7 +62,6 @@ p {
 }
 
 .delete-event-single {
-    grid-area: delete;
     background-color: red;
     background-repeat: no-repeat;
     border: 1px solid red;
@@ -81,11 +69,10 @@ p {
     overflow: hidden;
     outline: none;
     color: white;
-    font-size: 16px;
-    padding: 5px 15px;
+    font-size: 13px;
     border-radius: 5px;
-    height: 30px;
-    width: 150px;
+    height: 21px;
+    width: 90px;
 }
 
 .delete-event-single:hover {
@@ -97,6 +84,7 @@ p {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .areYouGoing-msg {
