@@ -29,7 +29,3 @@ The signup and login pages are modal in addition to event creation. NotSquare ha
 > * if the user is not logged in, a message is displayed that they need to log in to RSVP
 * all users can access all events from the home page
 <br>
-To-Do:
-* let users view events that they are attending
-* display event creation form from dropdown menu
-* have number of attendees for an event
