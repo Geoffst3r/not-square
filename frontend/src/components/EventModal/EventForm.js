@@ -34,13 +34,15 @@ function EventForm({ event, callSetter, sessionUser }) {
         setErrors([]);
         const dateTime = new Date(`${day}T${time}`);
         dispatch(singleEventActions.editEvent({ title, body, time: dateTime, id: event.id, createdAt: event.createdAt, updatedAt: new Date(), userId: id }))
+            .then(event => {
+                dispatch(singleEventActions.getSingleEvent(event.id));
+                callSetter();
+                return history.push(`/events/${event.id}`);
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) return setErrors(data.errors);
             });
-        dispatch(singleEventActions.getSingleEvent(event.id));
-        callSetter();
-        return history.push(`/events/${event.id}`);
     };
 
     return (
