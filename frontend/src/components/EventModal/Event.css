@@ -1,3 +1,20 @@
+.about-developer {
+    display: flex;
+    padding-left: 40px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+.developed-by {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.name-GC {
+    font-style: normal;
+}
+
 .event {
     list-style: none;
     border: 1px solid lightgray;
