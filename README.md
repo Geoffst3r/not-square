@@ -17,6 +17,23 @@ Explore the web application at [NotSquare](https://not-square.herokuapp.com)
 ### Event Page:
 ![image](https://github.com/Geoffst3r/not-square/blob/main/images/single-event.PNG)
 <br>
+### Instructions:
+1. Clone GitHub repo.
+2. cd into project folder and run `npm install`
+3. Within sql create a user with createdb priveleges.
+4. Within project directory `backend/`, create a .env file that has:
+```
+PORT=5000
+DB_USERNAME=<username set in step 3>
+DB_PASSWORD=<password you set for user in step 3>
+DB_DATABASE=<name of the db you want to make>
+DB_HOST=localhost
+JWT_SECRET=<secret you want to implement>
+JWT_EXPIRES_IN=<time in seconds>
+```
+5. Within a terminal run `npx dotenv sequelize db:create`
+6. Migrate and seed data
+7. Open and run `npm start` on two terminals (one for backend/ and the other for frontend/)
 ### Details:
 The signup and login pages are modal in addition to event creation. NotSquare has different functionality depending on who the user is:
 * on the home page:
