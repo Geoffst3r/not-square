@@ -11,8 +11,15 @@
     font-style: italic;
 }
 
-.name-GC {
-    font-style: normal;
+.name-GC, a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.name-GC:hover {
+    font-style: italic;
+    font-weight: bold;
 }
 
 .event {

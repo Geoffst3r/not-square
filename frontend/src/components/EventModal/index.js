@@ -41,8 +41,8 @@ function Event() {
     return (
         <>
             <div className='about-developer'>
-                <p className='developed-by'>Developed by</p>
-                <a href='https://github.com/Geoffst3r' target='_blank' rel='noreferrer'><i className='fab fa-github fa-lg'></i></a>
+                <p className='developed-by'>Developed by </p>
+                <a href='https://github.com/Geoffst3r' target='_blank' rel='noreferrer'><span className='name-GC'>Geoffrey Cox</span></a>
             </div>
             <button className="add-event" onClick={() => setShowModal(true)} hidden={sessionUser ? false : true}>+Event</button>
             {showModal && (
